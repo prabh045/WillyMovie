@@ -1,0 +1,6 @@
+framework module Pods_WillyMovie {
+  umbrella header "Pods-WillyMovie-umbrella.h"
+
+  export *
+  module * { export * }
+}
