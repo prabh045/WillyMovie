@@ -22,14 +22,19 @@ class MovieViewModel {
         }
     }
     
+    var shouldShowIndicator = Box(true)
+    
     func retrieveMovies(movie: String) {
+          self.shouldShowIndicator.value = true
         MovieService.fetchMovies(movie: movie) { (movieModel, error) in
             
             if let error = error {
                 print("Error getting Movies \(error.localizedDescription)")
+                self.shouldShowIndicator.value = false
                 return
             }
             self.movies.value = movieModel!.search
+            self.shouldShowIndicator.value = false
             self.saveMovies(movies: movieModel!)
         }
     }

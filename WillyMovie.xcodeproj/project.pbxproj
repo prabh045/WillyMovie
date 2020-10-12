@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20AC16B26602C5F57615A620 /* Pods_WillyMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7EB5C77520417F0EF9991 /* Pods_WillyMovie.framework */; };
+		7F104266253486B2009459B1 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F104265253486B2009459B1 /* Indicator.swift */; };
 		7F6B0A1E252F49C9009BE306 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6B0A1D252F49C9009BE306 /* Animator.swift */; };
 		7F6B0A20252F4C48009BE306 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6B0A1F252F4C48009BE306 /* DismissAnimator.swift */; };
 		7FC0BBA6252C56A6008A4654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC0BBA5252C56A6008A4654 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		4751FDAFF0798176FBBFA117 /* Pods-WillyMovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WillyMovie.debug.xcconfig"; path = "Target Support Files/Pods-WillyMovie/Pods-WillyMovie.debug.xcconfig"; sourceTree = "<group>"; };
 		4CF7EB5C77520417F0EF9991 /* Pods_WillyMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WillyMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C5E6F7641605F6F5B31285E /* Pods-WillyMovieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WillyMovieTests.release.xcconfig"; path = "Target Support Files/Pods-WillyMovieTests/Pods-WillyMovieTests.release.xcconfig"; sourceTree = "<group>"; };
+		7F104265253486B2009459B1 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		7F6B0A1D252F49C9009BE306 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		7F6B0A1F252F4C48009BE306 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		7FC0BBA2252C56A6008A4654 /* WillyMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WillyMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +163,7 @@
 				7FF3B32C252DF20C00669B10 /* Connection.swift */,
 				7F6B0A1D252F49C9009BE306 /* Animator.swift */,
 				7F6B0A1F252F4C48009BE306 /* DismissAnimator.swift */,
+				7F104265253486B2009459B1 /* Indicator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				7FC0BBAA252C56A6008A4654 /* ViewController.swift in Sources */,
 				7FC0BBA6252C56A6008A4654 /* AppDelegate.swift in Sources */,
 				7FC0BBCF252C91B0008A4654 /* MovieDetailController.swift in Sources */,
+				7F104266253486B2009459B1 /* Indicator.swift in Sources */,
 				7FC0BBD3252CA29C008A4654 /* MovieModel.swift in Sources */,
 				7F6B0A20252F4C48009BE306 /* DismissAnimator.swift in Sources */,
 				7FC0BBD5252CA5CD008A4654 /* MovieViewModel.swift in Sources */,
@@ -497,7 +501,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -551,7 +555,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

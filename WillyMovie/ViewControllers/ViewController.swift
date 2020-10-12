@@ -18,6 +18,11 @@ class ViewController: UIViewController{
     var presentAnimator = Animator()
     var dismissAnimator = DismissAnimator()
     var selectedRowFrame = CGRect.zero
+    lazy var activityIndicator: Indicator = {
+        var indicator = Indicator(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
     
     //MARK: View Lifecycle
     override func viewDidLoad() {
@@ -46,7 +51,27 @@ class ViewController: UIViewController{
                 self?.moviesTableView.reloadData()
             }
         }
+        view.addSubview(activityIndicator)
+        movieViewmodel.shouldShowIndicator.bind { (value) in
+            DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator.isRunning = value
+            }
+        }
         
+        setupConstraints()
+        
+    }
+    
+    //MARK: Constraints
+    private func setupConstraints() {
+        //constraints for activity indicator
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 100),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 100)
+            
+        ])
     }
     
     //MARK: Navigation
