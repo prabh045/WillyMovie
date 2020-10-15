@@ -56,8 +56,9 @@ class ViewController: UIViewController{
             DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator.isRunning = value
             }
+            
+
         }
-        
         setupConstraints()
         
     }

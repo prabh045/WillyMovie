@@ -28,6 +28,11 @@ class MovieViewModel {
           self.shouldShowIndicator.value = true
         MovieService.fetchMovies(movie: movie) { (movieModel, error) in
             
+            if movieModel == nil {
+                self.shouldShowIndicator.value = false
+                return
+            }
+            
             if let error = error {
                 print("Error getting Movies \(error.localizedDescription)")
                 self.shouldShowIndicator.value = false

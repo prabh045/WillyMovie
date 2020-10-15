@@ -16,7 +16,10 @@ class MovieService {
     static func fetchMovies(movie: String,completion: @escaping (MovieModel?, Error?) -> Void) {
         let movieString = movie.replacingOccurrences(of: " ", with: "")
         let urlString = "http://www.omdbapi.com/?s=\(movieString)&apikey=\(API_KEY)"
-        let url = URL(string: urlString)!
+        guard let url = URL(string: urlString) else {
+            completion(nil,nil)
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
