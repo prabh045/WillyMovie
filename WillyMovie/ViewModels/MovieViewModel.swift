@@ -11,8 +11,14 @@ import Foundation
 class MovieViewModel {
     
     private var movies = Box([MovieElement]())
+    var movieApi: MovieApi
+    
+    init(movieApi: MovieApi) {
+        self.movieApi = movieApi
+    }
     
     //MARK: Archiving Paths
+    //TODO: Remove these are not being used anywhere
     static let DocumentsDirectory = FileManager().urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
     static let ArchiveUrl = DocumentsDirectory.appendingPathComponent("movies")
     
@@ -25,8 +31,8 @@ class MovieViewModel {
     var shouldShowIndicator = Box(true)
     
     func retrieveMovies(movie: String) {
-          self.shouldShowIndicator.value = true
-        MovieService.fetchMovies(movie: movie) { (movieModel, error) in
+        self.shouldShowIndicator.value = true
+        self.movieApi.fetchMovies(movie: movie) { (movieModel, error) in
             
             if movieModel == nil {
                 self.shouldShowIndicator.value = false
@@ -43,7 +49,7 @@ class MovieViewModel {
             self.saveMovies(movies: movieModel!)
         }
     }
-
+    
     
     func getMovieCount() -> Int {
         return movies.value.count

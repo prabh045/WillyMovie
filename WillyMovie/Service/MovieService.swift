@@ -9,19 +9,25 @@
 import Foundation
 import os.log
 
-class MovieService {
+enum ApiError: Error {
+    case noResponse
+    case wrongStatusCode
+}
+
+class MovieService: MovieApi {
     
-    static private let API_KEY = "55e6e58b"
-    
-    static func fetchMovies(movie: String,completion: @escaping (MovieModel?, Error?) -> Void) {
+    private let API_KEY = "55e6e58b"
+    private let networkManager = NetworkManager()
+    //http://www.omdbapi.com/?s=avengers&apikey=55e6e58b
+    func fetchMovies(movie: String,completion: @escaping (MovieModel?, Error?) -> Void) {
         let movieString = movie.replacingOccurrences(of: " ", with: "")
         let urlString = "http://www.omdbapi.com/?s=\(movieString)&apikey=\(API_KEY)"
         guard let url = URL(string: urlString) else {
             completion(nil,nil)
             return
         }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+        networkManager.getData(with: url) { (data, response, error) in
             
             if error != nil {
                 os_log(.debug, log: .default, "Error Fetching data from server")
@@ -52,7 +58,7 @@ class MovieService {
                 os_log(.info, log: .default, "Error in converting Data")
             }
             
-        }.resume()
+        }
     }
     
     

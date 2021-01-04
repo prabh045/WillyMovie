@@ -25,8 +25,6 @@ class Indicator: UIView {
         return indicator
     }()
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

@@ -13,28 +13,63 @@ class WillyMovieTests: XCTestCase {
     
     //Just a simple test case
     //Should pass when there is mismatch between keys
-    func testDecoding_whenMissingType_itThrows() {
-        XCTAssertThrowsError(try JSONDecoder().decode(MovieModel.self, from: fixtureMissingType)) { error in
-            if case .keyNotFound(let key, _)? = error as? DecodingError {
-                XCTAssertEqual("Search", key.stringValue)
-            } else {
-                XCTFail("Expected '.keyNotFound' but got \(error)")
-            }
-        }
-
-    }
+//    func testDecoding_whenMissingType_itThrows() {
+//        XCTAssertThrowsError(try JSONDecoder().decode(MovieModel.self, from: fixtureMissingType)) { error in
+//            if case .keyNotFound(let key, _)? = error as? DecodingError {
+//                XCTAssertEqual("Search", key.stringValue)
+//            } else {
+//                XCTFail("Expected '.keyNotFound' but got \(error)")
+//            }
+//        }
+//
+//    }
+    
+    var sut: MovieViewModel?
+    var mockMovieService: MockMovieService?
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        mockMovieService = MockMovieService()
+        sut = MovieViewModel(movieApi: mockMovieService!)
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        mockMovieService = nil
+        super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    //MARK: Test to check if fetchmovies method is being called in viewmodel
+    func testFetchMoviesMethod() {
+        sut?.retrieveMovies(movie: "abc")
+        XCTAssert(mockMovieService!.didFetchMethodCalled, "Fetch movies method is not being called for some reason")
+    }
+    
+    func testFailedRequest() {
+        
+        //Given
+        let error = ApiError.noResponse
+        
+        //When
+        sut?.retrieveMovies(movie: "abc")
+        mockMovieService!.fetchFailed(error: error)
+        
+        //indicator should be hidden and its value must ne set to false
+        //Here alert would be shown and tested
+        XCTAssertFalse(sut!.shouldShowIndicator.value, "Indicator bool must be set to false")
+    }
+    
+    func testSuccessRequest() {
+        //Given
+        let data = mockData
+        
+        //When
+        sut?.retrieveMovies(movie: "abc")
+        mockMovieService!.fetchSuccess(mockdata: data)
+        
+        XCTAssertTrue(sut!.getMovieCount()>0, "Movies count must be greater than zero")
     }
     
     func testPerformanceExample() {
@@ -46,9 +81,9 @@ class WillyMovieTests: XCTestCase {
     
 }
 
-private let fixtureMissingType = Data("""
+private let mockData = Data("""
 {
-    "earch": [{
+    "Search": [{
         "Title": "The Avengers",
         "Year": "2012",
         "imdbID": "tt0848228",
